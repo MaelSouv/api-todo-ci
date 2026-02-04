@@ -1,6 +1,6 @@
 # API TODO - CI/CD
 
-[![CI/CD Pipeline](https://github.com/mael/api-todo-ci/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/mael/api-todo-ci/actions/workflows/ci-cd.yml)
+[![CI/CD Pipeline](https://github.com/MaelSouv/api-todo-ci/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/MaelSouv/api-todo-ci/actions/workflows/ci-cd.yml)
 
 API TODO avec déploiement automatique via GitHub Actions et Render.
 
