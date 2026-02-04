@@ -13,7 +13,7 @@ API TODO avec déploiement automatique via GitHub Actions et Render.
 
 ## API Déployée
 
-**URL :** https://api-todo-ci-mael.onrender.com
+**URL :** https://api-todo-ci-1-mael.onrender.com
 
 ## Endpoints
 
@@ -31,19 +31,19 @@ API TODO avec déploiement automatique via GitHub Actions et Render.
 
 ### Récupérer tous les todos
 ```bash
-curl https://api-todo-ci-mael.onrender.com/todos
+curl https://api-todo-ci-1-mael.onrender.com/todos
 ```
 
 ### Créer un todo
 ```bash
-curl -X POST https://api-todo-ci-mael.onrender.com/todos \
+curl -X POST https://api-todo-ci-1-mael.onrender.com/todos \
   -H "Content-Type: application/json" \
   -d '{"title":"Apprendre le CI/CD"}'
 ```
 
 ### Health check
 ```bash
-curl https://api-todo-ci-mael.onrender.com/health
+curl https://api-todo-ci-1-mael.onrender.com/health
 ```
 
 ## Développement Local
