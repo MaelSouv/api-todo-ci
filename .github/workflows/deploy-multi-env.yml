@@ -1,0 +1,44 @@
+name: Multi-Env Deploy
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm ci
+      - run: npm test
+
+  deploy-staging:
+    needs: test
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Staging
+        run: |
+          if [ -z "${{ secrets.RENDER_STAGING_DEPLOY_URL }}" ]; then
+            echo "RENDER_STAGING_DEPLOY_URL is not set"
+            exit 1
+          fi
+          curl "${{ secrets.RENDER_STAGING_DEPLOY_URL }}"
+
+  deploy-production:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Production
+        run: |
+          if [ -z "${{ secrets.RENDER_PROD_DEPLOY_URL }}" ]; then
+            echo "RENDER_PROD_DEPLOY_URL is not set"
+            exit 1
+          fi
+          curl "${{ secrets.RENDER_PROD_DEPLOY_URL }}"
