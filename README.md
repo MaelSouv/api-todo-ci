@@ -7,13 +7,14 @@ API TODO avec déploiement automatique via GitHub Actions et Render.
 ## Fonctionnalités
 
 - CRUD complet pour les todos
-- Tests unitaires (8 tests)
-- CI/CD automatique
+- Tests unitaires (9 tests)
+- CI/CD automatique (Multi-environnement)
 - Déploiement automatique sur Render
 
 ## API Déployée
 
-**URL :** https://api-todo-ci-1-mael.onrender.com
+**Production :** https://api-todo-ci-1-mael.onrender.com
+**Staging :** https://api-todo-ci-mael-staging.onrender.com
 
 ## Endpoints
 
@@ -26,12 +27,18 @@ API TODO avec déploiement automatique via GitHub Actions et Render.
 | PUT | `/todos/:id` | Modifier un todo |
 | DELETE | `/todos/:id` | Supprimer un todo |
 | GET | `/health` | Status de l'API |
+| GET | `/stats` | Statistiques de l'API |
 
 ## Exemples d'utilisation
 
 ### Récupérer tous les todos
 ```bash
 curl https://api-todo-ci-1-mael.onrender.com/todos
+```
+
+### Statistiques (Staging)
+```bash
+curl https://api-todo-ci-mael-staging.onrender.com/stats
 ```
 
 ### Créer un todo
@@ -62,10 +69,10 @@ npm test
 
 Le pipeline s'exécute automatiquement à chaque push :
 
-1. **Lint** : Vérification de la syntaxe
-2. **Test** : Exécution des 8 tests unitaires
-3. **Build** : Vérification que tout compile
-4. **Deploy** : Déploiement automatique sur Render (seulement sur `main`)
+1. **Test** : Exécution des 9 tests unitaires
+2. **Deploy Staging** : Déploiement sur Render (branche `develop`)
+3. **Deploy Production** : Déploiement sur Render (branche `main`)
+4. **Release** : Création automatique de Release sur tag `v*`
 
 ## Projet réalisé dans le cadre du cours CI/CD
 
