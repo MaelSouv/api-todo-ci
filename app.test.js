@@ -73,10 +73,20 @@ describe('API TODO - Tests', () => {
 
     // Test 8 : Health check
     test('GET /health - Devrait retourner le status healthy', async () => {
-        const response = await request(app).get('/health');        
-
+        const response = await request(app).get('/health');
+        
         expect(response.status).toBe(200);
         expect(response.body.status).toBe('healthy');
         expect(response.body.timestamp).toBeDefined();
+    });
+
+    // Test 9 : Stats check
+    test('GET /stats - Devrait retourner les statistiques', async () => {
+        const response = await request(app).get('/stats');
+        
+        expect(response.status).toBe(200);
+        expect(response.body.status).toBe('ok');
+        expect(response.body.todos_count).toBeDefined();
+        expect(response.body.uptime).toBeDefined();
     });
 });

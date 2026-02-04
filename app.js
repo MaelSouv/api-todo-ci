@@ -23,9 +23,20 @@ app.get('/', (req, res) => {
             'POST /todos': 'Créer un todo',
             'PUT /todos/:id': 'Modifier un todo',
             'DELETE /todos/:id': 'Supprimer un todo',
-            'GET /health': 'Status de l\'API'
+            'GET /health': 'Status de l\'API',
+            'GET /stats': 'Statistiques de l\'API'
         },
         version: '1.0.0'
+    });
+});
+
+// GET /stats - Statistiques de l'API
+app.get('/stats', (req, res) => {
+    res.json({
+        status: 'ok',
+        todos_count: todos.length,
+        uptime: process.uptime(),
+        cpu_usage: process.cpuUsage()
     });
 });
 
